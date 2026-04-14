@@ -199,15 +199,16 @@ export async function updateProject(
 }
 
 // Real-time subscriptions
-export function subscribeToProfile(slug: string, callback: (profile: ClientProfile) => void) {
-  const subscription = supabase
-    .from('profiles')
-    .on('*', (payload) => {
-      if (payload.new.slug === slug) {
-        callback(payload.new as ClientProfile);
-      }
-    })
-    .subscribe();
-
-  return subscription;
-}
+// NOTE: This function uses deprecated Supabase API. Update to v2 Realtime API if needed.
+// export function subscribeToProfile(slug: string, callback: (profile: ClientProfile) => void) {
+//   const subscription = supabase
+//     .from('profiles')
+//     .on('*', (payload) => {
+//       if (payload.new.slug === slug) {
+//         callback(payload.new as ClientProfile);
+//       }
+//     })
+//     .subscribe();
+//
+//   return subscription;
+// }
