@@ -102,7 +102,7 @@ export default function ProfessionalTemplate({ profile }: ProfessionalTemplatePr
                     src={profile.logoImage}
                     alt={`${profile.company} logo`}
                     fill
-                    className="object-contain scale-125"
+                    className="object-cover scale-150"
                     sizes="80px"
                   />
                 </div>
