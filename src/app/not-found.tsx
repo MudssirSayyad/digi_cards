@@ -22,7 +22,7 @@ export default function NotFound() {
         <h2 className="text-2xl md:text-4xl font-bold mb-4">Page Not Found</h2>
 
         <p className="text-gray-300 mb-8 text-lg">
-          Oops! The portfolio you're looking for doesn't exist or has been moved.
+          Oops! The portfolio you are looking for does not exist or has been moved.
         </p>
 
         <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
