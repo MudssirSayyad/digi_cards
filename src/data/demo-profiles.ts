@@ -7,6 +7,7 @@ import type { ClientProfile } from '@/types';
 
 export const DATAR_AUTO_PROFILE: ClientProfile & {
   icon?: string;
+  logoImage?: string;
   whatsappMessage?: string;
   services?: Array<{
     title: string;
@@ -27,7 +28,8 @@ export const DATAR_AUTO_PROFILE: ClientProfile & {
   lastName: 'Sayyed',
   email: 'datarauto@gmail.com',
   phone: '+91 98900 88832',
-  profileImage: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop',
+  profileImage: '/assets/datar_owner.png',
+  logoImage: '/assets/datar_logo.png',
   bio: 'Datar Auto represents the pinnacle of automotive diagnostics in Nashik. Our facility specializes in high-end vehicle electronics and climate control systems, ensuring your drive remains as precise as the day it left the factory.',
   title: 'Founder & Lead Specialist',
   company: 'Datar Auto',

@@ -9,6 +9,7 @@ import { downloadVCard, generateWhatsAppLink } from '@/lib/vcard-generator';
 interface ProfessionalTemplateProps {
   profile: ClientProfile & {
     icon?: string;
+    logoImage?: string;
     whatsappMessage?: string;
     services?: Array<{
       title: string;
@@ -95,7 +96,19 @@ export default function ProfessionalTemplate({ profile }: ProfessionalTemplatePr
               whileHover={{ scale: 1.05 }}
               className="w-20 h-20 bg-[#2a2a2a] rounded-2xl flex items-center justify-center shadow-inner p-4 border border-[#5f3f3a]/30"
             >
-              <span className="text-4xl">{iconMap[profile.icon || 'precision_manufacturing']}</span>
+              {profile.logoImage ? (
+                <div className="relative w-full h-full">
+                  <Image
+                    src={profile.logoImage}
+                    alt={`${profile.company} logo`}
+                    fill
+                    className="object-contain"
+                    sizes="80px"
+                  />
+                </div>
+              ) : (
+                <span className="text-4xl">{iconMap[profile.icon || 'precision_manufacturing']}</span>
+              )}
             </motion.div>
 
             <div className="space-y-1">
