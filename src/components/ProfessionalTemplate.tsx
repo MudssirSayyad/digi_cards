@@ -94,7 +94,7 @@ export default function ProfessionalTemplate({ profile }: ProfessionalTemplatePr
           <div className="flex flex-col items-center text-center space-y-5">
             <motion.div
               whileHover={{ scale: 1.05 }}
-              className="w-20 h-20 bg-[#2a2a2a] rounded-2xl flex items-center justify-center shadow-inner p-4 border border-[#5f3f3a]/30"
+              className="w-20 h-20 bg-[#2a2a2a] rounded-2xl flex items-center justify-center shadow-inner border border-[#5f3f3a]/30 overflow-hidden"
             >
               {profile.logoImage ? (
                 <div className="relative w-full h-full">
@@ -102,7 +102,7 @@ export default function ProfessionalTemplate({ profile }: ProfessionalTemplatePr
                     src={profile.logoImage}
                     alt={`${profile.company} logo`}
                     fill
-                    className="object-contain"
+                    className="object-contain scale-125"
                     sizes="80px"
                   />
                 </div>
