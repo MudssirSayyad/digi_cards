@@ -1,4 +1,6 @@
 import { MetadataRoute } from 'next';
+import { DATAR_AUTO_PROFILE } from '@/data/profile-data';
+import { getProfileUrl } from '@/lib/profile-routes';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://digicards.app';
@@ -17,6 +19,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8,
+    },
+    {
+      url: getProfileUrl(DATAR_AUTO_PROFILE),
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.9,
     },
   ];
 }

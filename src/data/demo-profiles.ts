@@ -1,9 +1,10 @@
 /**
- * Demo Profile Data
- * Sample business profiles for testing the Professional Template
+ * Profile Data
+ * Sample business profiles for the Professional Template
  */
 
 import type { ClientProfile } from '@/types';
+import { matchesProfileRoute } from '@/lib/profile-routes';
 
 export const DATAR_AUTO_PROFILE: ClientProfile & {
   icon?: string;
@@ -22,7 +23,7 @@ export const DATAR_AUTO_PROFILE: ClientProfile & {
     subtitle: string;
   }>;
 } = {
-  id: 'demo-datar-auto',
+  id: 'datar-auto',
   slug: 'datar-auto',
   firstName: 'Salim',
   lastName: 'Sayyed',
@@ -91,8 +92,12 @@ export const DATAR_AUTO_PROFILE: ClientProfile & {
   ],
 };
 
-export const DEMO_PROFILES = [DATAR_AUTO_PROFILE];
+export const PROFILES = [DATAR_AUTO_PROFILE];
 
-export function getDemoProfile(slug: string) {
-  return DEMO_PROFILES.find((p) => p.slug === slug);
+export function getProfileBySlug(slug: string) {
+  return PROFILES.find((p) => p.slug === slug);
+}
+
+export function getProfileByRoute(companySlug: string, ownerSlug: string) {
+  return PROFILES.find((profile) => matchesProfileRoute(profile, companySlug, ownerSlug));
 }

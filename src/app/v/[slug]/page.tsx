@@ -1,9 +1,9 @@
 import { Metadata } from 'next';
+import { redirect } from 'next/navigation';
 import { notFound } from 'next/navigation';
 import type { ClientProfile } from '@/types';
-import PortfolioClient from './portfolio-client';
-import ProfessionalTemplate from '@/components/ProfessionalTemplate';
-import { getDemoProfile } from '@/data/demo-profiles';
+import { getProfileBySlug } from '@/data/profile-data';
+import { getProfilePath, getProfileUrl } from '@/lib/profile-routes';
 
 // Mock Supabase fetch - replace with your actual Supabase client
 // This would typically use createClient from '@supabase/supabase-js'
@@ -90,9 +90,9 @@ type Props = {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
 
-  // Check for demo profile first
-  const demoProfile = getDemoProfile(slug);
-  const profile = demoProfile || (await fetchClientProfile(slug));
+  // Check for profile data first
+  const profileData = getProfileBySlug(slug);
+  const profile = profileData || (await fetchClientProfile(slug));
 
   if (!profile) {
     return {
@@ -111,7 +111,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title,
       description,
       type: 'profile',
-      url: `https://digicards.app/v/${slug}`,
+      url: getProfileUrl(profile),
       firstName: profile.firstName,
       lastName: profile.lastName,
       images: [
@@ -138,10 +138,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function PortfolioPage({ params }: Props) {
   const { slug } = await params;
 
-  // Check for demo profile first
-  const demoProfile = getDemoProfile(slug);
-  if (demoProfile) {
-    return <ProfessionalTemplate profile={demoProfile} />;
+  // Check for profile data first
+  const profileData = getProfileBySlug(slug);
+  if (profileData) {
+    redirect(getProfilePath(profileData));
   }
 
   // Otherwise fetch from database
@@ -151,9 +151,5 @@ export default async function PortfolioPage({ params }: Props) {
     notFound();
   }
 
-  return (
-    <>
-      <PortfolioClient profile={profile} />
-    </>
-  );
+  redirect(getProfilePath(profile));
 }

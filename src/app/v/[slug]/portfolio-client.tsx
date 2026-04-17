@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import type { ClientProfile } from '@/types';
+import { getProfileUrl } from '@/lib/profile-routes';
 import { downloadVCard, generateWhatsAppLink } from '@/lib/vcard-generator';
 
 interface PortfolioClientProps {
@@ -49,7 +50,7 @@ export default function PortfolioClient({ profile }: PortfolioClientProps) {
       organization: profile.company,
       title: profile.title,
       photo: profile.profileImage,
-      url: `https://digicards.app/v/${profile.slug}`,
+      url: getProfileUrl(profile),
     });
   };
 

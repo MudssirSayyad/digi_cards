@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import type { ClientProfile } from '@/types';
+import { getProfileUrl } from '@/lib/profile-routes';
 import { downloadVCard, generateWhatsAppLink } from '@/lib/vcard-generator';
 
 interface ProfessionalTemplateProps {
@@ -40,7 +41,7 @@ export default function ProfessionalTemplate({ profile }: ProfessionalTemplatePr
       organization: profile.company,
       title: profile.title,
       photo: profile.profileImage,
-      url: `https://digicards.app/v/${profile.slug}`,
+      url: getProfileUrl(profile),
     });
   };
 
@@ -107,7 +108,9 @@ export default function ProfessionalTemplate({ profile }: ProfessionalTemplatePr
                   />
                 </div>
               ) : (
-                <span className="text-4xl">{iconMap[profile.icon || 'precision_manufacturing']}</span>
+                <span className="text-4xl">
+                  {iconMap[profile.icon || 'precision_manufacturing']}
+                </span>
               )}
             </motion.div>
 
