@@ -42,6 +42,9 @@ export const DATAR_AUTO_PROFILE: ClientProfile & {
   socialLinks: [
     { platform: 'phone', url: 'tel:+919890088832' },
     { platform: 'email', url: 'mailto:datarauto@gmail.com' },
+    { platform: 'website', url: 'https://www.google.com/search?q=Datar+Auto+Nashik' },
+    { platform: 'instagram', url: 'https://www.instagram.com/explore/search/keyword/?q=datar%20auto' },
+    { platform: 'facebook', url: 'https://www.facebook.com/search/top?q=Datar%20Auto' },
   ],
   projects: [],
   tapCount: 0,

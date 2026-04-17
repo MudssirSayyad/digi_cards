@@ -21,7 +21,9 @@ async function fetchClientProfile(
     return {
       id: `${companySlug}-${ownerSlug}`,
       slug: companySlug,
-      firstName: ownerParts[0] ? ownerParts[0].charAt(0).toUpperCase() + ownerParts[0].slice(1) : 'John',
+      firstName: ownerParts[0]
+        ? ownerParts[0].charAt(0).toUpperCase() + ownerParts[0].slice(1)
+        : 'John',
       lastName: ownerParts.slice(1).join(' ') || 'Doe',
       email: 'hello@example.com',
       phone: '+1234567890',

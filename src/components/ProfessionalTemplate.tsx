@@ -67,6 +67,16 @@ export default function ProfessionalTemplate({ profile }: ProfessionalTemplatePr
     build_circle: '🔧',
   };
 
+  const socialIconMap: Record<string, string> = {
+    website: '🌐',
+    instagram: '📷',
+    facebook: 'f',
+    twitter: '𝕏',
+    linkedin: 'in',
+    youtube: '▶',
+    tiktok: '♪',
+  };
+
   const highlights = profile.businessHighlights || [
     { icon: 'bolt', title: 'Expert Service', subtitle: 'Professional technicians' },
     { icon: 'speed', title: 'Fast Turnaround', subtitle: 'Quick diagnostics' },
@@ -229,6 +239,45 @@ export default function ProfessionalTemplate({ profile }: ProfessionalTemplatePr
             </motion.a>
           </div>
         </motion.section>
+
+        {profile.socialLinks.length > 0 && (
+          <motion.section
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            className="bg-[#151515] p-7 rounded-[1.75rem] space-y-5 border border-[#5f3f3a]/25"
+          >
+            <div className="flex items-center justify-between gap-4">
+              <div>
+                <h3 className="text-2xl font-bold text-[#ffb4a8]">Business Socials</h3>
+                <p className="text-xs uppercase tracking-[0.2em] text-[#c4c6cc] mt-1">
+                  Follow & connect online
+                </p>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 gap-3">
+              {profile.socialLinks.map((social) => (
+                <motion.a
+                  key={social.platform}
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="flex items-center gap-3 rounded-2xl border border-[#5f3f3a]/25 bg-[#202020] px-4 py-3 text-left"
+                >
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#2a2a2a] text-[#ffb4a8]">
+                    <span className="text-lg">{socialIconMap[social.platform] || '🔗'}</span>
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-sm font-semibold text-white capitalize">{social.platform}</p>
+                    <p className="truncate text-xs text-[#c4c6cc]">Open profile</p>
+                  </div>
+                </motion.a>
+              ))}
+            </div>
+          </motion.section>
+        )}
 
         {/* About Section */}
         <motion.section
