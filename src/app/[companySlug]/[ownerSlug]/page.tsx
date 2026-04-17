@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 import type { ClientProfile } from '@/types';
 import PortfolioClient from '@/app/v/[slug]/portfolio-client';
 import ProfessionalTemplate from '@/components/ProfessionalTemplate';
-import { getProfileByRoute } from '@/data/profile-data';
+import { getProfileByRoute } from '@/clients';
 import { getProfileUrl } from '@/lib/profile-routes';
 
 async function fetchClientProfile(

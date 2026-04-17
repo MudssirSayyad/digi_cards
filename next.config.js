@@ -3,6 +3,10 @@ const nextConfig = {
   // Enable React strict mode for development
   reactStrictMode: true,
 
+  // Keep development output separate from production output to avoid stale
+  // chunk reuse when switching between `next dev` and `next build` on Windows.
+  distDir: process.env.NODE_ENV === 'development' ? '.next-dev' : '.next',
+
   // Image optimization
   images: {
     remotePatterns: [
@@ -47,8 +51,13 @@ const nextConfig = {
     ];
   },
 
-  // PWA support
-  webpack: (config, { isServer }) => {
+  // Webpack config
+  webpack: (config, { dev }) => {
+    // Prevent intermittent corrupted .next vendor-chunks cache in local dev on Windows.
+    if (dev) {
+      config.cache = false;
+    }
+
     return config;
   },
 

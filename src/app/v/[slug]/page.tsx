@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 import { notFound } from 'next/navigation';
 import type { ClientProfile } from '@/types';
-import { getProfileBySlug } from '@/data/profile-data';
+import { getProfileBySlug } from '@/clients';
 import { getProfilePath, getProfileUrl } from '@/lib/profile-routes';
 
 // Mock Supabase fetch - replace with your actual Supabase client

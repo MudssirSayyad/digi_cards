@@ -1,7 +1,7 @@
 {
-  "name": "digicards",
+  "name": "datar-auto-profile",
   "version": "1.0.0",
-  "description": "High-performance NFC Digital Business Cards and Portfolio platform",
+  "description": "Datar Auto - Professional digital business card and profile platform. Premium automotive diagnostics and electrical services in Nashik, Maharashtra.",
   "private": true,
   "scripts": {
     "dev": "next dev",

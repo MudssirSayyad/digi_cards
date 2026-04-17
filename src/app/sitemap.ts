@@ -1,5 +1,5 @@
 import { MetadataRoute } from 'next';
-import { DATAR_AUTO_PROFILE } from '@/data/profile-data';
+import { ACTIVE_PROFILES } from '@/clients';
 import { getProfileUrl } from '@/lib/profile-routes';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
@@ -20,11 +20,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'monthly',
       priority: 0.8,
     },
-    {
-      url: getProfileUrl(DATAR_AUTO_PROFILE),
+    ...ACTIVE_PROFILES.map((profile) => ({
+      url: getProfileUrl(profile),
       lastModified: new Date(),
-      changeFrequency: 'weekly',
+      changeFrequency: 'weekly' as const,
       priority: 0.9,
-    },
+    })),
   ];
 }

@@ -6,7 +6,6 @@ import { motion } from 'framer-motion';
 import type { ClientProfile } from '@/types';
 import type { IconType } from 'react-icons';
 import {
-  FaEnvelope,
   FaFacebookF,
   FaGlobe,
   FaInstagram,
@@ -17,6 +16,7 @@ import {
   FaWhatsapp,
   FaYoutube,
 } from 'react-icons/fa';
+import { FiMail, FiMapPin, FiPhone } from 'react-icons/fi';
 import { getProfileUrl } from '@/lib/profile-routes';
 import { downloadVCard, generateWhatsAppLink } from '@/lib/vcard-generator';
 
@@ -92,6 +92,8 @@ export default function ProfessionalTemplate({ profile }: ProfessionalTemplatePr
   const socialProfiles = profile.socialLinks.filter((social) =>
     ['instagram', 'facebook', 'linkedin', 'youtube'].includes(social.platform)
   );
+  const socialCount = socialProfiles.length;
+  const hasProfileImage = Boolean(profile.profileImage);
 
   const highlights = profile.businessHighlights || [
     { icon: 'bolt', title: 'Expert Service', subtitle: 'Professional technicians' },
@@ -110,68 +112,66 @@ export default function ProfessionalTemplate({ profile }: ProfessionalTemplatePr
         <motion.section
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="relative rounded-[2rem] p-4 border border-[#5f3f3a]/30 bg-gradient-to-b from-[#1f1f1f] to-[#171717]"
+          className="relative overflow-hidden rounded-[2rem] p-4 border border-[#5f3f3a]/30 bg-gradient-to-b from-[#1f1f1f] via-[#1b1b1b] to-[#151515]"
         >
-          <div className="flex items-center justify-center mb-5">
-            <div className="px-3 py-1 rounded-full border border-[#5f3f3a]/40 bg-[#2a2a2a] text-[10px] uppercase tracking-[0.16em] text-[#ffb4a8] font-semibold">
-              Premium Service Profile
-            </div>
-          </div>
+          <div className="pointer-events-none absolute -top-10 -right-8 h-28 w-28 rounded-full bg-[#e60000]/15 blur-2xl" />
+          <div className="pointer-events-none absolute -bottom-14 -left-10 h-28 w-28 rounded-full bg-[#ffb4a8]/10 blur-2xl" />
 
-          <div className="flex flex-col items-center text-center space-y-4">
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              className="w-20 h-20 bg-[#2a2a2a] rounded-full flex items-center justify-center shadow-inner border border-[#5f3f3a]/30 overflow-hidden"
-            >
-              {profile.logoImage ? (
-                <div className="relative w-full h-full">
-                  <Image
-                    src={profile.logoImage}
-                    alt={`${profile.company} logo`}
-                    fill
-                    className="object-fill"
-                    sizes="80px"
-                  />
+          <div className="relative z-10 space-y-4">
+            <div className="rounded-2xl border border-[#5f3f3a]/25 bg-[#141414]/90 p-3">
+              <div className="flex items-center gap-3">
+                {profile.logoImage ? (
+                  <motion.div
+                    whileHover={{ scale: 1.04 }}
+                    className="relative h-14 w-14 shrink-0 overflow-hidden rounded-full border border-[#5f3f3a]/35 bg-[#242424]"
+                  >
+                    <Image
+                      src={profile.logoImage}
+                      alt={`${profile.company} logo`}
+                      fill
+                      className="object-fill"
+                      sizes="56px"
+                    />
+                  </motion.div>
+                ) : null}
+
+                <div className="min-w-0 text-left">
+                  <h2 className="truncate text-2xl font-extrabold tracking-tight text-white">
+                    {profile.company}
+                  </h2>
+                  {profile.tagline && (
+                    <p className="mt-0.5 text-[10px] uppercase tracking-[0.16em] text-[#ffb4a8]">
+                      {profile.tagline}
+                    </p>
+                  )}
                 </div>
-              ) : (
-                <span className="text-4xl">
-                  {iconMap[profile.icon || 'precision_manufacturing']}
-                </span>
-              )}
-            </motion.div>
-
-            <div className="space-y-1">
-              <h2 className="text-3xl font-extrabold tracking-tight text-white">
-                {profile.company}
-              </h2>
-              {profile.tagline && (
-                <p className="text-[#ffb4a8] text-sm uppercase tracking-[0.15em]">
-                  {profile.tagline}
-                </p>
-              )}
+              </div>
             </div>
 
             <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.2 }}
-              className="w-full rounded-[1.75rem] border border-[#5f3f3a]/25 bg-[#1c1b1b] p-4"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.15 }}
+              className="w-full rounded-[1.5rem] border border-[#5f3f3a]/25 bg-[#1a1919] p-4"
             >
-              <div className="flex flex-col items-center gap-3">
-                <div className="relative w-24 h-24 rounded-full overflow-hidden border-[3px] border-[#e60000] ring-4 ring-[#e60000]/20 shadow-2xl">
-                  <Image
-                    src={profile.profileImage}
-                    alt={`${profile.firstName} ${profile.lastName}`}
-                    fill
-                    className="object-cover"
-                    priority
-                  />
-                </div>
-                <div className="text-center">
-                  <p className="text-xl font-bold text-white">
+              <div className={hasProfileImage ? 'flex items-center gap-3' : 'text-left'}>
+                {hasProfileImage ? (
+                  <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-2xl border-2 border-[#e60000] shadow-[0_0_0_4px_rgba(230,0,0,0.18)]">
+                    <Image
+                      src={profile.profileImage}
+                      alt={`${profile.firstName} ${profile.lastName}`}
+                      fill
+                      className="object-cover"
+                      priority
+                    />
+                  </div>
+                ) : null}
+
+                <div className="min-w-0 text-left">
+                  <p className="truncate text-xl font-bold text-white">
                     {profile.firstName} {profile.lastName}
                   </p>
-                  <p className="text-[11px] text-[#ffb4a8] uppercase font-bold tracking-[0.2em] mt-1">
+                  <p className="mt-1 text-[11px] uppercase tracking-[0.18em] text-[#ffb4a8]">
                     {profile.title}
                   </p>
                 </div>
@@ -186,62 +186,68 @@ export default function ProfessionalTemplate({ profile }: ProfessionalTemplatePr
           whileInView={{ opacity: 1, y: 0 }}
           className="grid grid-cols-1 gap-3"
         >
-          <div className="bg-[#202020] rounded-[1.75rem] p-4 border border-[#5f3f3a]/25 shadow-[0_12px_24px_rgba(0,0,0,0.25)]">
-            <div className="flex gap-4">
-              <div className="flex flex-col justify-between py-1 text-[#e60000] text-xl">
-                <FaPhoneAlt />
-                <FaEnvelope />
-                <FaMapMarkerAlt />
-              </div>
-              <div className="space-y-3 flex-1">
-                <div className="space-y-1">
-                  <p className="text-[10px] text-[#c4c6cc] font-bold uppercase tracking-widest">
-                    Primary Contact
-                  </p>
-                  <p className="text-base font-bold text-[#e5e2e1]">{profile.phone}</p>
+          <div className="bg-[#202020] rounded-[1.75rem] p-3 border border-[#5f3f3a]/25 shadow-[0_12px_24px_rgba(0,0,0,0.25)]">
+            <div className="space-y-3">
+              <a
+                href={`tel:${profile.phone}`}
+                className="flex items-center gap-3 rounded-xl border border-[#5f3f3a]/20 bg-[#171717] p-3"
+              >
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#e60000]/15 text-[#ff4d4d]">
+                  <FiPhone className="text-[18px]" />
                 </div>
-                <div className="space-y-1">
-                  <p className="text-[10px] text-[#c4c6cc] font-bold uppercase tracking-widest">
-                    Email Inquiry
-                  </p>
-                  <p className="text-[#e5e2e1] font-medium">{profile.email}</p>
+                <p className="text-base font-bold leading-none text-[#e5e2e1]">{profile.phone}</p>
+              </a>
+
+              <a
+                href={`mailto:${profile.email}`}
+                className="flex items-center gap-3 rounded-xl border border-[#5f3f3a]/20 bg-[#171717] p-3"
+              >
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#e60000]/15 text-[#ff4d4d]">
+                  <FiMail className="text-[18px]" />
                 </div>
-                <div className="space-y-1">
-                  <p className="text-[10px] text-[#c4c6cc] font-bold uppercase tracking-widest">
-                    Location
-                  </p>
-                  <p className="text-[#e5e2e1] font-medium text-sm leading-relaxed">
-                    {profile.location}
-                  </p>
+                <p className="text-[#e5e2e1] font-medium leading-none break-all">{profile.email}</p>
+              </a>
+
+              <a
+                href={`https://maps.google.com/?q=${encodeURIComponent(profile.location || '')}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-start gap-3 rounded-xl border border-[#5f3f3a]/20 bg-[#171717] p-3"
+              >
+                <div className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#e60000]/15 text-[#ff4d4d]">
+                  <FiMapPin className="text-[18px]" />
                 </div>
-              </div>
+                <p className="text-[#e5e2e1] font-medium text-sm leading-relaxed">
+                  {profile.location}
+                </p>
+              </a>
             </div>
           </div>
         </motion.section>
 
-        {/* Connect Now */}
+        {/* Quick Actions */}
         <motion.section
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          className="bg-[#d2dddf] p-4 rounded-[1.5rem] border border-[#9dc6c9]"
+          className="bg-[#151515] p-5 rounded-[1.5rem] border border-[#5f3f3a]/25"
         >
-          <h3 className="text-center text-2xl font-bold text-[#0b9ca0] mb-3">Connect Now</h3>
+          <h3 className="text-center text-2xl font-bold text-[#ffb4a8] mb-3">Quick Actions</h3>
 
           <div className="grid grid-cols-1 gap-2">
             <motion.button
               onClick={handleSaveContact}
               whileHover={{ scale: 1.01 }}
               whileTap={{ scale: 0.98 }}
-              className="flex items-center gap-3 rounded-lg border border-[#0b9ca0] bg-[#e7eff0] px-4 py-3 text-[#0d0d0d] font-semibold"
+              className="flex items-center gap-3 rounded-lg border border-[#5f3f3a]/30 bg-[#202020] px-4 py-3 text-[#f4f0ef] font-semibold"
             >
-              <FaUserPlus className="text-[#0b9ca0]" /> Add to PhoneBook
+              <FaUserPlus className="text-[#ffb4a8]" /> Add to PhoneBook
             </motion.button>
 
             <motion.button
               onClick={handleWhatsApp}
               whileHover={{ scale: 1.01 }}
               whileTap={{ scale: 0.98 }}
-              className="flex items-center gap-3 rounded-lg border border-[#0b9ca0] bg-[#e7eff0] px-4 py-3 text-[#0d0d0d] font-semibold"
+              className="flex items-center gap-3 rounded-lg border border-[#5f3f3a]/30 bg-[#202020] px-4 py-3 text-[#f4f0ef] font-semibold"
             >
               <FaWhatsapp className="text-[#22c55e]" /> Whatsapp Chat
             </motion.button>
@@ -251,7 +257,7 @@ export default function ProfessionalTemplate({ profile }: ProfessionalTemplatePr
               target="_blank"
               whileHover={{ scale: 1.01 }}
               whileTap={{ scale: 0.98 }}
-              className="flex items-center gap-3 rounded-lg border border-[#0b9ca0] bg-[#e7eff0] px-4 py-3 text-[#0d0d0d] font-semibold"
+              className="flex items-center gap-3 rounded-lg border border-[#5f3f3a]/30 bg-[#202020] px-4 py-3 text-[#f4f0ef] font-semibold"
             >
               <FaMapMarkerAlt className="text-[#3b82f6]" /> View Location
             </motion.a>
@@ -263,54 +269,13 @@ export default function ProfessionalTemplate({ profile }: ProfessionalTemplatePr
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.01 }}
                 whileTap={{ scale: 0.98 }}
-                className="flex items-center gap-3 rounded-lg border border-[#0b9ca0] bg-[#e7eff0] px-4 py-3 text-[#0d0d0d] font-semibold"
+                className="flex items-center gap-3 rounded-lg border border-[#5f3f3a]/30 bg-[#202020] px-4 py-3 text-[#f4f0ef] font-semibold"
               >
-                <FaGlobe className="text-[#111827]" /> Website Link
+                <FaGlobe className="text-[#ffb4a8]" /> Website Link
               </motion.a>
             )}
           </div>
         </motion.section>
-
-        {socialProfiles.length > 0 && (
-          <motion.section
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            className="bg-[#d2dddf] p-4 rounded-[1.5rem] border border-[#9dc6c9]"
-          >
-            <div className="flex items-center justify-center gap-6">
-              {socialProfiles.map((social) => {
-                const SocialIcon = socialIconMap[social.platform] || FaGlobe;
-                const colorClass =
-                  social.platform === 'linkedin'
-                    ? 'bg-[#0a66c2]'
-                    : social.platform === 'instagram'
-                      ? 'bg-gradient-to-br from-[#f97316] via-[#ec4899] to-[#7c3aed]'
-                      : social.platform === 'youtube'
-                        ? 'bg-[#ff0000]'
-                        : 'bg-[#1877f2]';
-
-                return (
-                <motion.a
-                  key={social.platform}
-                  href={social.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover={{ scale: 1.08 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="group"
-                  title={social.platform}
-                >
-                  <div
-                    className={`flex h-12 w-12 items-center justify-center rounded-full text-white shadow-md ${colorClass}`}
-                  >
-                    <SocialIcon className="text-xl" />
-                  </div>
-                </motion.a>
-                );
-              })}
-            </div>
-          </motion.section>
-        )}
 
         {/* About Section */}
         <motion.section
@@ -356,9 +321,6 @@ export default function ProfessionalTemplate({ profile }: ProfessionalTemplatePr
               <h3 className="text-xl font-bold uppercase tracking-widest text-[#e5e2e1]">
                 Service Catalog
               </h3>
-              <span className="text-[10px] font-bold text-[#ffb4a8] uppercase">
-                Specialized Units
-              </span>
             </div>
 
             <div className="grid grid-cols-1 gap-4">
@@ -404,18 +366,58 @@ export default function ProfessionalTemplate({ profile }: ProfessionalTemplatePr
           </motion.section>
         )}
 
-        {/* Aesthetic Section */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          className="relative h-40 rounded-[1.75rem] overflow-hidden bg-gradient-to-br from-[#2a2a2a] to-[#1b1b1b] border border-[#5f3f3a]/25 flex items-center justify-center p-8"
-        >
-          <div className="flex flex-col text-center">
-            <p className="text-xl font-bold text-white leading-tight">
-              {profile.tagline || 'Excellence in Service'}
-            </p>
-          </div>
-        </motion.div>
+        {socialProfiles.length > 0 && (
+          <motion.section
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            className="bg-[#151515] p-4 rounded-[1.5rem] border border-[#5f3f3a]/25"
+          >
+            <h3 className="text-center text-sm font-bold uppercase tracking-widest text-[#ffb4a8] mb-3">
+              Connect on Social Media
+            </h3>
+            <div
+              className={
+                socialCount <= 2
+                  ? 'flex items-center justify-center gap-8'
+                  : socialCount === 3
+                    ? 'grid grid-cols-3 gap-3'
+                    : 'grid grid-cols-4 gap-3'
+              }
+            >
+              {socialProfiles.map((social) => {
+                const SocialIcon = socialIconMap[social.platform] || FaGlobe;
+                const colorClass =
+                  social.platform === 'linkedin'
+                    ? 'bg-[#0a66c2]'
+                    : social.platform === 'instagram'
+                      ? 'bg-gradient-to-br from-[#f97316] via-[#ec4899] to-[#7c3aed]'
+                      : social.platform === 'youtube'
+                        ? 'bg-[#ff0000]'
+                        : 'bg-[#1877f2]';
+
+                return (
+                  <motion.a
+                    key={social.platform}
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.08 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="group flex w-16 flex-col items-center gap-1"
+                    title={social.platform}
+                  >
+                    <div
+                      className={`flex h-12 w-12 items-center justify-center rounded-full text-white shadow-md ${colorClass}`}
+                    >
+                      <SocialIcon className="text-xl" />
+                    </div>
+                    <span className="text-[10px] text-[#c4c6cc] capitalize">{social.platform}</span>
+                  </motion.a>
+                );
+              })}
+            </div>
+          </motion.section>
+        )}
       </main>
 
       <nav className="fixed bottom-0 left-0 right-0 flex justify-around items-center px-4 pt-3 pb-6 bg-[#1c1b1b] border-t border-[#5f3f3a]/20 shadow-2xl z-50 rounded-t-[2rem]">
@@ -425,7 +427,7 @@ export default function ProfessionalTemplate({ profile }: ProfessionalTemplatePr
           onClick={() => setActiveNav('call')}
           className="flex flex-col items-center justify-center text-[#c4c6cc] px-4 py-2 hover:bg-[#2a2a2a] transition-all active:scale-90 duration-150 rounded-lg"
         >
-          <span className="text-xl">{iconMap.call}</span>
+          <FaPhoneAlt className="text-lg" />
           <span className="text-[10px] font-semibold uppercase tracking-widest mt-1">Call</span>
         </motion.a>
 
@@ -436,7 +438,7 @@ export default function ProfessionalTemplate({ profile }: ProfessionalTemplatePr
           onClick={() => setActiveNav('location')}
           className="flex flex-col items-center justify-center bg-gradient-to-br from-[#e60000] to-[#b30000] text-white rounded-xl px-6 py-2 shadow-lg active:scale-90 transition-all duration-150"
         >
-          <span className="text-xl">{iconMap.location_on}</span>
+          <FaMapMarkerAlt className="text-lg" />
           <span className="text-[10px] font-semibold uppercase tracking-widest mt-1">Location</span>
         </motion.a>
 
@@ -447,7 +449,7 @@ export default function ProfessionalTemplate({ profile }: ProfessionalTemplatePr
           onClick={() => setActiveNav('whatsapp')}
           className="flex flex-col items-center justify-center text-[#c4c6cc] px-4 py-2 hover:bg-[#2a2a2a] transition-all active:scale-90 duration-150 rounded-lg"
         >
-          <span className="text-xl">{iconMap.chat}</span>
+          <FaWhatsapp className="text-lg" />
           <span className="text-[10px] font-semibold uppercase tracking-widest mt-1">WhatsApp</span>
         </motion.a>
       </nav>
