@@ -3,7 +3,7 @@ import { ACTIVE_PROFILES } from '@/clients';
 import { getProfileUrl } from '@/lib/profile-routes';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://digicards.app';
+  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://diigicards.com';
 
   // TODO: Fetch all profiles from Supabase and generate URLs
   // For now, return base URLs

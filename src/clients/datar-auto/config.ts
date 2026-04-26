@@ -63,7 +63,7 @@ export const DATAR_AUTO_PROFILE: DatarAutoProfile = {
     'Shop No 9, DATAR AUTO ELECTRICALS WORKS, Prabhu Business Centre, Param Pujya Ravishankarji Marg, Nashik Road, Nasik, Nashik, Maharashtra 422006',
   bio: 'Datar Auto is a trusted automotive service provider in Nashik, Maharashtra, specializing in car AC and electrical repairs. With over 40 years of experience, we offer expert diagnostics, fast turnaround, and dependable service quality.',
   title: 'Founder & Lead Specialist',
-  tagline: 'Since 1989, 40+ years of trusted automotive care',
+  tagline: 'Since 1986, 40+ years of trusted automotive care',
   whatsappMessage:
     'Hi Datar Auto, I need help with my car AC/electrical issue. Please share service availability and charges.',
   socialLinks: [

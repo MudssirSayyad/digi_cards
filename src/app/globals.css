@@ -2,121 +2,72 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Custom CSS for DigiCards */
-
 :root {
-  --primary: #00d4ff; /* Neon Blue */
-  --accent: #1a1a2e; /* Dark background */
-  --neon-cyan: #00d4ff;
-  --neon-purple: #9d4edd;
-  --neon-pink: #ff006e;
+  --bg-base: #070b12;
+  --bg-elevated: #0a1222;
+  --surface-soft: rgba(255, 255, 255, 0.04);
+  --text-primary: #f8fbff;
+  --text-muted: #b6c6dc;
+  --accent-electric: #38bdf8;
 }
 
 * {
-  @apply box-border;
+  box-sizing: border-box;
 }
 
 html,
 body {
-  overflow-x: hidden;
   height: 100%;
+  overflow-x: hidden;
 }
 
 body {
-  @apply bg-black text-white;
-  font-feature-settings: 'rounding' 1;
+  background: var(--bg-base);
+  color: var(--text-primary);
+  font-feature-settings:
+    'salt' 1,
+    'ss01' 1;
 }
 
-/* Smooth scrolling */
 html {
   scroll-behavior: smooth;
 }
 
-/* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-black;
+  background: #060913;
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-slate-700 rounded-full;
-
-  &:hover {
-    @apply bg-slate-600;
-  }
+  background: #243047;
+  border-radius: 9999px;
 }
 
-/* Selection color */
+::-webkit-scrollbar-thumb:hover {
+  background: #32425f;
+}
+
 ::selection {
-  @apply bg-cyan-500 text-black;
+  background: #38bdf8;
+  color: #04101f;
 }
 
-/* Utility classes for neon effects */
-.neon-glow {
-  text-shadow:
-    0 0 10px var(--neon-cyan),
-    0 0 20px var(--neon-cyan);
-}
-
-.neon-border {
-  border-color: var(--neon-cyan);
-  box-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
-}
-
-.gradient-neon {
-  background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple), var(--neon-pink));
-}
-
-.gradient-neon-text {
-  @apply bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-500 bg-clip-text text-transparent;
-}
-
-/* Animations */
-@keyframes glow {
+@keyframes floatingIn {
   0%,
   100% {
-    box-shadow: 0 0 5px rgba(0, 212, 255, 0.5);
-  }
-  50% {
-    box-shadow: 0 0 20px rgba(0, 212, 255, 0.8);
-  }
-}
-
-@keyframes pulse-glow {
-  0%,
-  100% {
+    transform: translateY(0px);
     opacity: 1;
   }
   50% {
-    opacity: 0.7;
+    transform: translateY(-8px);
+    opacity: 0.92;
   }
 }
 
-.animate-glow {
-  animation: glow 2s ease-in-out infinite;
-}
-
-.animate-pulse-glow {
-  animation: pulse-glow 2s ease-in-out infinite;
-}
-
-/* Mobile optimization */
-@media (max-width: 640px) {
-  html {
-    font-size: 14px;
-  }
-}
-
-/* Performance optimizations */
-img {
-  @apply will-change-auto;
-}
-
-/* Safe area for notch support */
 body {
   padding-left: env(safe-area-inset-left);
   padding-right: env(safe-area-inset-right);
@@ -124,31 +75,8 @@ body {
   padding-bottom: env(safe-area-inset-bottom);
 }
 
-/* Mobile Frame Styles */
-/* Hide scrollbar for mobile frame but allow scrolling */
-.overscroll-none {
-  overscroll-behavior: none;
-}
-
-.overscroll-none::-webkit-scrollbar {
-  width: 2px;
-}
-
-.overscroll-none::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.overscroll-none::-webkit-scrollbar-thumb {
-  background: rgba(255, 180, 168, 0.3);
-  border-radius: 10px;
-}
-
-.overscroll-none::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 180, 168, 0.5);
-}
-
-/* Smooth scrolling in mobile frame */
-.overscroll-none {
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
+@media (prefers-reduced-motion: no-preference) {
+  .animate-floating {
+    animation: floatingIn 5s ease-in-out infinite;
+  }
 }

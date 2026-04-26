@@ -11,7 +11,7 @@ export function getProfilePath(profile: RouteProfile): string {
 }
 
 export function getProfileUrl(profile: RouteProfile): string {
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://digicards.app';
+  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://diigicards.com';
   return `${baseUrl}${getProfilePath(profile)}`;
 }
 

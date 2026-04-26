@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: ['/admin', '/dashboard', '/.next'],
     },
-    sitemap: 'https://digicards.app/sitemap.xml',
+    sitemap: 'https://diigicards.com/sitemap.xml',
   };
 }
