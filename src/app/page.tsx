@@ -414,7 +414,13 @@ export default function Home() {
 
       <footer className="border-t border-white/10 px-4 py-10 sm:px-6 lg:px-8">
         <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-4 text-sm text-slate-400 sm:flex-row sm:items-center">
-          <Image src="/assets/web/logo-no-bg.png" alt="Diigicards" height={60} width={200} className="w-auto" />
+          <Image
+            src="/assets/web/logo-no-bg.png"
+            alt="Diigicards"
+            height={60}
+            width={200}
+            className="w-auto"
+          />
         </div>
       </footer>
     </main>
