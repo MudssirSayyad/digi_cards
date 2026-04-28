@@ -10,7 +10,6 @@ import {
   FaArrowsRotate,
   FaIdCard,
   FaUsers,
-  FaChartLine,
   FaPenRuler,
   FaBolt,
   FaWhatsapp,
