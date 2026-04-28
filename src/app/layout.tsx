@@ -17,11 +17,11 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: {
-    template: '%s | diigicards.com',
-    default: 'diigicards.com | Premium NFC Business Cards',
+    template: '%s | Diigicards',
+    default: 'Diigicards | Premium NFC Business Cards',
   },
   description:
-    'diigicards.com offers premium NFC business cards with live profile sharing, real-time updates, and lead analytics.',
+    'Diigicards offers premium NFC business cards with live profile sharing, real-time updates, and lead analytics.',
   keywords: ['NFC business card', 'digital card', 'lead capture', 'tap to share'],
   authors: [{ name: 'diigicards.com' }],
   creator: 'diigicards.com',
@@ -41,15 +41,15 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'diigicards.com | Premium NFC Business Cards',
+    title: 'Diigicards | Premium NFC Business Cards',
     description: 'Share your contact details, socials, and portfolio with a single tap.',
     creator: '@digicards',
     images: ['https://diigicards.com/og-image.png'],
   },
   icons: {
-    icon: '/favicon.ico',
-    shortcut: '/favicon-16x16.png',
-    apple: '/apple-touch-icon.png',
+    icon: '/assets/web/logo-no-bg.png',
+    shortcut: '/assets/web/logo-no-bg.png',
+    apple: '/assets/web/logo-no-bg.png',
   },
   manifest: '/site.webmanifest',
 };

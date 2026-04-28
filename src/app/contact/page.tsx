@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import SiteLogo from '@/components/SiteLogo';
 
 interface SuccessDialogProps {
   isOpen: boolean;
@@ -96,11 +97,8 @@ export default function ContactPage() {
 
       <header className="sticky top-0 z-40 border-b border-sky-300/20 bg-[#060a11]/85 backdrop-blur-xl">
         <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
-          <Link
-            href="/"
-            className="text-lg font-semibold tracking-[0.08em] text-sky-300 sm:text-xl"
-          >
-            diigicards.com
+          <Link href="/" aria-label="diigicards home">
+            <SiteLogo className="h-14 w-auto sm:h-16" priority />
           </Link>
           <Link
             href="/"

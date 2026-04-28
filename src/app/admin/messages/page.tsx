@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import SiteLogo from '@/components/SiteLogo';
 
 interface ContactMessage {
   id: string;
@@ -77,7 +78,10 @@ export default function AdminMessages() {
 
       <header className="sticky top-0 z-40 border-b border-sky-300/20 bg-[#060a11]/85 backdrop-blur-xl">
         <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
-          <h1 className="text-lg font-semibold tracking-[0.08em] text-sky-300">Admin Panel</h1>
+          <div className="flex items-center gap-3">
+            <SiteLogo variant="round-black" className="h-10 w-10 rounded-full" priority />
+            <h1 className="text-lg font-semibold tracking-[0.08em] text-sky-300">Admin Panel</h1>
+          </div>
           <Link
             href="/"
             className="rounded-full border border-sky-300/40 px-5 py-2 text-sm font-medium text-sky-200 transition hover:bg-sky-500/10"
