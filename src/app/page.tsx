@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import Image from 'next/image';
 
 import {
   FaHandshake,
@@ -117,7 +118,13 @@ export default function Home() {
       <header className="sticky top-0 z-50 border-b border-sky-400/20 bg-[#060a11]/90 backdrop-blur-xl">
         <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
           <Link href="/" aria-label="diigicards home">
-            <img src="/assets/web/logo-no-bg.png" alt="Diigicards" className="h-[60px] w-auto" />
+            <Image
+              src="/assets/web/logo-no-bg.png"
+              alt="Diigicards"
+              height={60}
+              width={200}
+              className="w-auto"
+            />
           </Link>
 
           <button
@@ -407,7 +414,7 @@ export default function Home() {
 
       <footer className="border-t border-white/10 px-4 py-10 sm:px-6 lg:px-8">
         <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-4 text-sm text-slate-400 sm:flex-row sm:items-center">
-          <img src="/assets/web/logo-no-bg.png" alt="Diigicards" className="h-[60px] w-auto" />
+          <Image src="/assets/web/logo-no-bg.png" alt="Diigicards" height={60} width={200} className="w-auto" />
         </div>
       </footer>
     </main>
