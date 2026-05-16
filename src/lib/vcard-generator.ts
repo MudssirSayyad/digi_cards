@@ -105,7 +105,8 @@ export function copyVCardToClipboard(vCardData: VCardData): Promise<void> {
 export function generateWhatsAppLink(phoneNumber: string, message?: string): string {
   const encodedMessage = message ? encodeURIComponent(message) : '';
   const cleanPhone = phoneNumber.replace(/\D/g, '');
-  return `https://wa.me/${cleanPhone}${encodedMessage ? `?text=${encodedMessage}` : ''}`;
+  // Using api.whatsapp.com instead of wa.me for better reliability across WhatsApp and WhatsApp Business
+  return `https://api.whatsapp.com/send?phone=${cleanPhone}${encodedMessage ? `&text=${encodedMessage}` : ''}`;
 }
 
 /**

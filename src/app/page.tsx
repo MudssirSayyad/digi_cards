@@ -15,6 +15,8 @@ import {
   FaBolt,
   FaWhatsapp,
 } from 'react-icons/fa6';
+import { generateWhatsAppLink } from '@/lib/vcard-generator';
+
 
 interface SuccessDialogProps {
   isOpen: boolean;
@@ -398,7 +400,7 @@ export default function Home() {
             </div>
 
             <a
-              href="https://wa.me/919503824431"
+              href={generateWhatsAppLink('919503824431', "Hi! I'd like to get a DiigiCard. Can you help?")}
               target="_blank"
               rel="noopener noreferrer"
               className="mt-6 flex w-full items-center justify-center gap-3 rounded-full bg-[#25D366] px-6 py-4 text-base font-semibold text-white transition hover:bg-[#20bd5a] hover:shadow-[0_0_25px_rgba(37,211,102,0.35)]"
