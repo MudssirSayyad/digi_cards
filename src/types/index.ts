@@ -44,6 +44,8 @@ export interface ClientProfile {
   tapCount: number;
   createdAt: string;
   updatedAt: string;
+  useFlatRoute?: boolean;
+  template?: 'professional' | 'lawyer';
   theme?: {
     primaryColor?: string;
     accentColor?: string;

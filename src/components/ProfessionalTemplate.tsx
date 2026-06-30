@@ -78,6 +78,16 @@ export default function ProfessionalTemplate({ profile }: ProfessionalTemplatePr
     mail: '✉️',
     location_on: '📍',
     build_circle: '🔧',
+    gavel: '⚖️',
+    balance: '⚖️',
+    scale: '⚖️',
+    work: '💼',
+    business: '🏢',
+    menu_book: '📖',
+    description: '📄',
+    shield: '🛡️',
+    handshake: '🤝',
+    school: '🎓',
   };
 
   const socialIconMap: Record<string, IconType> = {

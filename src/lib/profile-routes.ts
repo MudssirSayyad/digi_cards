@@ -1,9 +1,15 @@
 import type { ClientProfile } from '@/types';
 import { slugify } from '@/lib/utils';
 
-type RouteProfile = Pick<ClientProfile, 'firstName' | 'lastName' | 'company' | 'slug'>;
+type RouteProfile = Pick<
+  ClientProfile,
+  'firstName' | 'lastName' | 'company' | 'slug' | 'useFlatRoute'
+>;
 
 export function getProfilePath(profile: RouteProfile): string {
+  if (profile.useFlatRoute) {
+    return `/${slugify(profile.slug)}`;
+  }
   const companySlug = profile.company ? slugify(profile.company) : slugify(profile.slug);
   const ownerSlug = slugify(`${profile.firstName} ${profile.lastName}`);
 
@@ -20,6 +26,10 @@ export function matchesProfileRoute(
   companySlug: string,
   ownerSlug?: string
 ): boolean {
+  if (profile.useFlatRoute) {
+    return slugify(profile.slug) === companySlug;
+  }
+  
   const expectedCompanySlug = profile.company ? slugify(profile.company) : slugify(profile.slug);
   const expectedOwnerSlug = slugify(`${profile.firstName} ${profile.lastName}`);
 

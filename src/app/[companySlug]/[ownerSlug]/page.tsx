@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import type { ClientProfile } from '@/types';
 import PortfolioClient from '@/app/v/[slug]/portfolio-client';
 import ProfessionalTemplate from '@/components/ProfessionalTemplate';
+import LawyerTemplate from '@/components/LawyerTemplate';
 import { getProfileByRoute } from '@/clients';
 import { getProfileUrl } from '@/lib/profile-routes';
 
@@ -114,6 +115,9 @@ export default async function ProfilePage({ params }: Props) {
 
   const profileData = getProfileByRoute(companySlug, ownerSlug);
   if (profileData) {
+    if (profileData.template === 'lawyer') {
+      return <LawyerTemplate profile={profileData} />;
+    }
     return <ProfessionalTemplate profile={profileData} />;
   }
 

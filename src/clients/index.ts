@@ -5,6 +5,7 @@
 
 import type { ClientProfile } from '@/types';
 import { AMJAD_SAYYED_PROFILE, DATAR_AUTO_PROFILE, SAMEER_SAYYED_PROFILE } from './datar-auto';
+import { TABESH_SHAIKH_PROFILE } from './tabesh-shaikh';
 import { matchesProfileRoute } from '@/lib/profile-routes';
 
 /**
@@ -15,6 +16,7 @@ export const ACTIVE_PROFILES: ClientProfile[] = [
   DATAR_AUTO_PROFILE,
   SAMEER_SAYYED_PROFILE,
   AMJAD_SAYYED_PROFILE,
+  TABESH_SHAIKH_PROFILE,
 ];
 
 /**
@@ -32,7 +34,7 @@ export function getProfileBySlug(slug: string): ClientProfile | undefined {
  */
 export function getProfileByRoute(
   companySlug: string,
-  ownerSlug: string
+  ownerSlug?: string
 ): ClientProfile | undefined {
   return ACTIVE_PROFILES.find((profile) => matchesProfileRoute(profile, companySlug, ownerSlug));
 }
@@ -41,4 +43,6 @@ export function getProfileByRoute(
 export { DATAR_AUTO_PROFILE } from './datar-auto';
 export { SAMEER_SAYYED_PROFILE } from './datar-auto';
 export { AMJAD_SAYYED_PROFILE } from './datar-auto';
+export { TABESH_SHAIKH_PROFILE } from './tabesh-shaikh';
 export type * from './datar-auto';
+export type * from './tabesh-shaikh';
