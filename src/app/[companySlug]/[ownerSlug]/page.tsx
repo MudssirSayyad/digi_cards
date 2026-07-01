@@ -4,6 +4,7 @@ import type { ClientProfile } from '@/types';
 import PortfolioClient from '@/app/v/[slug]/portfolio-client';
 import ProfessionalTemplate from '@/components/ProfessionalTemplate';
 import LawyerTemplate from '@/components/LawyerTemplate';
+import DeveloperTemplate from '@/components/DeveloperTemplate';
 import { getProfileByRoute } from '@/clients';
 import { getProfileUrl } from '@/lib/profile-routes';
 
@@ -117,6 +118,9 @@ export default async function ProfilePage({ params }: Props) {
   if (profileData) {
     if (profileData.template === 'lawyer') {
       return <LawyerTemplate profile={profileData} />;
+    }
+    if (profileData.template === 'developer') {
+      return <DeveloperTemplate profile={profileData} />;
     }
     return <ProfessionalTemplate profile={profileData} />;
   }

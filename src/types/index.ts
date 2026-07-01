@@ -45,7 +45,7 @@ export interface ClientProfile {
   createdAt: string;
   updatedAt: string;
   useFlatRoute?: boolean;
-  template?: 'professional' | 'lawyer';
+  template?: 'professional' | 'lawyer' | 'developer';
   theme?: {
     primaryColor?: string;
     accentColor?: string;

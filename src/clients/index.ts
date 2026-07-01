@@ -6,6 +6,7 @@
 import type { ClientProfile } from '@/types';
 import { AMJAD_SAYYED_PROFILE, DATAR_AUTO_PROFILE, SAMEER_SAYYED_PROFILE } from './datar-auto';
 import { TABESH_SHAIKH_PROFILE } from './tabesh-shaikh';
+import { MUDSSIR_SAYYED_PROFILE } from './mudssir-sayyad';
 import { matchesProfileRoute } from '@/lib/profile-routes';
 
 /**
@@ -17,6 +18,7 @@ export const ACTIVE_PROFILES: ClientProfile[] = [
   SAMEER_SAYYED_PROFILE,
   AMJAD_SAYYED_PROFILE,
   TABESH_SHAIKH_PROFILE,
+  MUDSSIR_SAYYED_PROFILE,
 ];
 
 /**
@@ -44,5 +46,7 @@ export { DATAR_AUTO_PROFILE } from './datar-auto';
 export { SAMEER_SAYYED_PROFILE } from './datar-auto';
 export { AMJAD_SAYYED_PROFILE } from './datar-auto';
 export { TABESH_SHAIKH_PROFILE } from './tabesh-shaikh';
+export { MUDSSIR_SAYYED_PROFILE } from './mudssir-sayyad';
 export type * from './datar-auto';
 export type * from './tabesh-shaikh';
+export type * from './mudssir-sayyad';

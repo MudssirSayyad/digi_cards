@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import ProfessionalTemplate from '@/components/ProfessionalTemplate';
 import LawyerTemplate from '@/components/LawyerTemplate';
+import DeveloperTemplate from '@/components/DeveloperTemplate';
 import { getProfileByRoute } from '@/clients';
 import { getProfileUrl } from '@/lib/profile-routes';
 
@@ -68,6 +69,10 @@ export default async function ProfilePage({ params }: Props) {
 
   if (profile.template === 'lawyer') {
     return <LawyerTemplate profile={profile} />;
+  }
+
+  if (profile.template === 'developer') {
+    return <DeveloperTemplate profile={profile} />;
   }
 
   return <ProfessionalTemplate profile={profile} />;
